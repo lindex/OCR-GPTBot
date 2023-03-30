@@ -2,11 +2,13 @@ services:
   context:
     image: redis:7.0.9
     ports:
-      - 6379:6379
+      - "6379:6379"
   bot:
     image: str1kez/ocrgpt_bot:latest
     build: .
-    pull_policy: always
+    restart: always
+    depends_on:
+      - context
     env_file:
       - ../.env
     # volumes:
